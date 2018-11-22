@@ -4,16 +4,16 @@ import firebase from './initializer/firebase';
 
 class Login extends Component {
     constructor(props){
-        super();
+        super(props);
         this.login = this.login.bind(this);
     }
 
     login(){
 
-        let provider = new firebase.auth.GoogleAuthProvider()
+        let provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/photoslibrary.readonly');
         firebase.auth().signInWithPopup(provider).then(result => {
-            console.log(result);
+            let token = result.credential.accessToken;
         }).catch( (err)=>{
             console.log(err);
         });
